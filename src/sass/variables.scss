@@ -1,0 +1,16 @@
+@mixin font-lato($size, $weight: 400) {
+  font-size: $size;
+  font-weight: $weight;
+  font-style: normal;
+}
+
+$white: #ffffff;
+$font-light-lavender: #c2bff4;
+$font-lavender-mist: #dad8f7;
+$font-paler-lavander: #e7e6fb;
+$font-light-aquamarine: #87ebcd;
+$sun-icon: #f6c833;
+$light-sun-icon: #fbdb60;
+$light-cloud-icon: #c2cef2;
+$background-card: rgba(102, 96, 200, 0.6);
+$background-panel: #6d67d0;

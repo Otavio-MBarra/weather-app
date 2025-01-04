@@ -1,0 +1,6 @@
+@use "reset.scss";
+@use "variables.scss";
+
+body {
+  background-color: variables.$sun-icon;
+}
