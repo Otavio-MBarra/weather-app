@@ -15,44 +15,62 @@
   </head>
   <body>
     <main>
+      <input type="search" name="" id="" />
       <section class="main-weather-panel">
-        <p class="main-weather-panel__city-name">
-          Cachoeiro de Itapemirim - ES
-        </p>
+        <img
+          class="main-weather-panel__img-climate"
+          src="./src/img/clound.svg"
+          alt="icone da previsão do tempo"
+        />
+        <div class="main-weather-panel__city">
+          <img src="./src/img/pin-icon.svg" alt="marcardor de localização" />
+          <p class="main-weather-panel__city-name">
+            Cachoeiro de Itapemirim, ES
+          </p>
+        </div>
+
         <div class="main-weather-panel__graus">
-          <h2 class="main-weather-panel__graus__currenty-grau">18°c</h2>
-          <div class="main-weather-panel__graus__media-graus">28° 16°</div>
+          <h2 class="main-weather-panel__graus__currenty-grau">
+            18 <span>°c</span>
+          </h2>
+          <div class="main-weather-panel__graus__media-graus">
+            <span class="media-graus__maximum">28°</span
+            ><span class="media-graus__minimum">16°</span>
+          </div>
         </div>
 
         <div class="main-weather-pane__climate-information">
-          <div class="climate-information__card-information">
+          <div class="climate-information__card-information wind">
             <img
-              src="https://e7.pngegg.com/pngimages/401/219/png-clipart-blue-cloud-art-cloud-computing-cloud-blue-cloud.png"
-              alt=""
+              class="card-information__icon"
+              src="./src/img/wind-icon.svg"
+              alt="icone de vento"
             />
             <div class="card-information__type-information">
               <p class="type-information__type">Vento</p>
-              <p class="type-information__value">10 km/h</p>
+              <p class="type-information__value"><span>10</span> km/h</p>
             </div>
           </div>
-          <div class="climate-information__card-information">
+          <div class="climate-information__card-information weather">
             <img
-              src="https://e7.pngegg.com/pngimages/401/219/png-clipart-blue-cloud-art-cloud-computing-cloud-blue-cloud.png"
-              alt=""
+              class="card-information__icon"
+              src="./src/img/weather-icon.svg"
+              alt="icone de gotas de chuva"
             />
             <div class="card-information__type-information">
-              <p class="type-information__type">Vento</p>
-              <p class="type-information__value">10 km/h</p>
+              <p class="type-information__type">Umidade</p>
+              <p class="type-information__value"><span>31</span>%</p>
             </div>
           </div>
-          <div class="climate-information__card-information">
+          <div class="climate-information__card-information rain">
             <img
-              src="https://e7.pngegg.com/pngimages/401/219/png-clipart-blue-cloud-art-cloud-computing-cloud-blue-cloud.png"
-              alt=""
+              class="card-information__icon"
+              src="./src/img/rain-icon.svg"
+              alt="icone de chuva"
             />
             <div class="card-information__type-information">
-              <p class="type-information__type">Vento</p>
-              <p class="type-information__value">10 km/h</p>
+              <p class="type-information__type">chuva</p>
+              <p class="type-information__value"><span>10</span> %</p>
             </div>
           </div>
         </div>

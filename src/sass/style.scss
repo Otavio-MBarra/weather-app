@@ -2,5 +2,115 @@
 @use "variables.scss";
 
 body {
-  background-color: variables.$sun-icon;
+  background: no-repeat url("../img/main-background.png") center/cover;
+}
+main {
+  max-width: min(90vw, 1440px);
+  margin: 4rem auto;
+}
+
+.main-weather-panel {
+  background-image: url("../img/bacground-card-main.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 15px;
+  position: relative;
+  // height: 480px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.main-weather-panel__img-climate {
+  position: absolute;
+  width: 35%;
+  top: -6rem;
+  left: -2rem;
+}
+
+.main-weather-panel__city {
+  color: variables.$font-light-lavender;
+  @include variables.font-lato(1.4rem, 700);
+  align-self: self-end;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem;
+}
+.main-weather-panel__graus {
+  margin-top: 6.1rem;
+  color: variables.$white;
+}
+
+.main-weather-panel__graus__currenty-grau {
+  @include variables.font-lato(8.8rem);
+  position: relative;
+  span {
+    color: variables.$font-lavender-mist;
+    position: absolute;
+    font-size: 2.4rem;
+    top: 15px;
+  }
+}
+
+.main-weather-panel__graus__media-graus {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  @include variables.font-lato(2rem, 700);
+}
+
+.media-graus__minimum {
+  color: variables.$font-lavender-mist;
+}
+
+.main-weather-pane__climate-information {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 10rem;
+  grid-template-areas:
+    "wind weather"
+    "rain rain";
+}
+.wind {
+  grid-area: wind;
+}
+.weather {
+  grid-area: weather;
+}
+.rain {
+  grid-area: rain;
+  justify-self: center;
+  width: 45%;
+}
+
+.climate-information__card-information {
+  background-color: variables.$background-card;
+  border-radius: 6px;
+  backdrop-filter: blur(0px);
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  color: variables.$font-paler-lavander;
+}
+
+.card-information__icon {
+  width: 45px;
+  opacity: 0.4;
+}
+
+.type-information__type {
+  @include variables.font-lato(1.3rem);
+  margin-bottom: 5px;
+}
+
+.type-information__value {
+  @include variables.font-lato(1.4rem, 700);
+  span {
+    font-size: 1.8rem;
+  }
 }
