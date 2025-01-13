@@ -1,5 +1,1 @@
-1 - fazer parte front estrutura html e css (decidir se vai fazer com sass ou não)
-2 - ver como funciona a API e ver se essa api tem os icones 
-        2.1 - caso nao tiver, ir atras dos icones
-3 - tentar colocar animações nos icones 
-4 - fazer cada função separa e ir testando 
+https://open-meteo.com/en/docs
