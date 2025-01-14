@@ -1,0 +1,49 @@
+@use "../variables.scss";
+
+.more-weather-information__list-days {
+  background-color: variables.$background-panel;
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.list-days__day {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day__day-name {
+  color: variables.$font-lavender-mist;
+}
+
+.day__day-icon-climate {
+  width: 40px;
+}
+
+.day__day-temperature {
+  color: variables.$white;
+
+  span {
+    color: variables.$font-light-lavender;
+    margin-left: 5px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .more-weather-information__list-days {
+    background-color: variables.$background-panel-dark;
+  }
+
+  .day__day-name {
+    color: variables.$font-dark-lavender-mist;
+  }
+
+  .day__day-temperature {
+    span {
+      color: variables.$font-dark-lavender;
+    }
+  }
+}

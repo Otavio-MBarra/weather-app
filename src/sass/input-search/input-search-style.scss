@@ -1,0 +1,31 @@
+@use "../variables.scss";
+
+.wrapper-input-search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
+}
+.wrapper-input-search__search-input {
+  width: 100%;
+  border: none;
+  background-color: variables.$background-card;
+  padding: 8px;
+  border-radius: 10px;
+  color: variables.$font-light-lavender;
+  &::placeholder {
+    color: variables.$font-light-lavender;
+    @include variables.font-lato(1.2rem, 400);
+  }
+  &:focus {
+    border: none;
+    outline: 0;
+  }
+}
+.wrapper-input-search__icon {
+  width: 20px;
+  position: absolute;
+  right: 15px;
+}
