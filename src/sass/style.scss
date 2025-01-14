@@ -3,6 +3,7 @@
 @use "./main-panel/panel-style.scss";
 @use "./input-search/input-search-style.scss";
 @use "./panel-climate-week/panel-climate-week.scss";
+@use "./air-quality-panel/air-qualy-panel.scss";
 body {
   background: variables.$background-card no-repeat
     url("../img/main-background.png") center/cover;
@@ -12,70 +13,3 @@ main {
   max-width: min(90vw, 1440px);
   margin: 4rem auto;
 }
-
-///////////////////////////////////////////////////////////////////////
-///
-///
-.more-weather-information {
-  margin-top: 15px;
-}
-
-.air-quality-panel {
-  margin-top: 15px;
-  background-color: variables.$background-panel;
-  border-radius: 10px;
-  padding: 25px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  color: variables.$font-paler-lavander;
-}
-
-.air-quality-panel__text-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  @include variables.font-lato(1.6rem, 700);
-}
-
-.air-quality-panel__quality-statistc {
-  text-align: center;
-}
-
-.quality-statistic__text {
-  @include variables.font-lato(1.8rem, 700);
-  color: variables.$font-light-aquamarine;
-}
-
-.quality-statistic__percentage {
-  @include variables.font-lato(4rem, 700);
-}
-
-.quality-statistic__statistics {
-  display: flex;
-  gap: 15px;
-  text-align: center;
-}
-
-.more-info-statistic__number {
-  @include variables.font-lato(1.4rem, 700);
-  color: variables.$font-light-aquamarine;
-}
-
-.more-info-statistic__unit {
-  @include variables.font-lato(1.2rem, 400);
-}
-@media (prefers-color-scheme: dark) {
-  .air-quality-panel {
-    background-color: variables.$background-panel-dark;
-    color: variables.$font-dark-paler-lavender;
-  }
-  .more-info-statistic__number,
-  .quality-statistic__text {
-    color: variables.$font-dark-aquamarine;
-  }
-}
-////////////
