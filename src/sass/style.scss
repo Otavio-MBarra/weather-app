@@ -4,7 +4,9 @@
 @use "./input-search/input-search-style.scss";
 @use "./panel-climate-week/panel-climate-week.scss";
 body {
-  background: no-repeat url("../img/main-background.png") center/cover;
+  background: variables.$background-card no-repeat
+    url("../img/main-background.png") center/cover;
+  backdrop-filter: blur(15px);
 }
 main {
   max-width: min(90vw, 1440px);
@@ -66,5 +68,14 @@ main {
 .more-info-statistic__unit {
   @include variables.font-lato(1.2rem, 400);
 }
-
+@media (prefers-color-scheme: dark) {
+  .air-quality-panel {
+    background-color: variables.$background-panel-dark;
+    color: variables.$font-dark-paler-lavender;
+  }
+  .more-info-statistic__number,
+  .quality-statistic__text {
+    color: variables.$font-dark-aquamarine;
+  }
+}
 ////////////
