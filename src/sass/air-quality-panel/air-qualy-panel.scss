@@ -1,11 +1,12 @@
 @use "../variables.scss";
 
 .more-weather-information {
-  margin-top: 15px;
+  grid-area: weather-info;
 }
 
 .air-quality-panel {
-  margin-top: 15px;
+  grid-area: air-quality;
+
   background-color: variables.$background-panel;
   border-radius: 10px;
   padding: 25px 16px;

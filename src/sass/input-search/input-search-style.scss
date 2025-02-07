@@ -1,6 +1,7 @@
 @use "../variables.scss";
 
 .wrapper-input-search {
+  grid-area: search;
   display: flex;
   align-items: center;
   justify-content: center;
