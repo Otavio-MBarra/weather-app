@@ -30,3 +30,8 @@
   position: absolute;
   right: 15px;
 }
+@media screen and (min-width: 1024px) {
+  .wrapper-input-search {
+    margin-bottom: 4rem;
+  }
+}

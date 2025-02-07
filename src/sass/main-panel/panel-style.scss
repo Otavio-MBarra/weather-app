@@ -13,34 +13,6 @@
   justify-content: center;
   margin-top: 4rem;
   grid-area: main-panel;
-  height: 100%;
-}
-
-@media screen and (min-width: 530px) {
-  .main-weather-panel__img-climate {
-    width: 25%;
-  }
-}
-@media screen and (min-width: 690px) {
-  .main-weather-panel__img-climate {
-    top: -7rem;
-    left: -3rem;
-  }
-}
-@media screen and (min-width: 850px) {
-  .main-weather-panel__img-climate {
-    width: 20%;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .main-weather-panel {
-    margin: 0;
-    .main-weather-panel__img-climate {
-      width: 35%;
-      top: -5rem;
-      left: -4rem;
-    }
-  }
 }
 
 .main-weather-panel__img-climate {
@@ -175,5 +147,45 @@
     span {
       color: variables.$font-dark-lavender-mist;
     }
+  }
+}
+
+@media screen and (min-width: 530px) {
+  .main-weather-panel__img-climate {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 690px) {
+  .main-weather-panel__img-climate {
+    top: -7rem;
+    left: -3rem;
+  }
+  .main-weather-pane__climate-information {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "wind weather rain";
+  }
+  .climate-information__card-information {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 850px) {
+  .main-weather-panel__img-climate {
+    width: 20%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .main-weather-panel {
+    margin: 0;
+    .main-weather-panel__img-climate {
+      width: 176px;
+      left: -5rem;
+    }
+  }
+  .main-weather-pane__climate-information {
+    width: 100%;
+  }
+  .main-weather-panel {
+    justify-content: space-between;
   }
 }
