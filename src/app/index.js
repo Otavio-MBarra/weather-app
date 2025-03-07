@@ -1,9 +1,11 @@
 async function getForecast() {
   const apiUrl =
-    "http://api.weatherapi.com/v1/forecast.json?key=b72d269fa0c14e4da57220332252002&q=cachoeiro%20de%20itapemirim&days=7&lang=pt";
+    "https://api.weatherapi.com/v1/forecast.json?key=b72d269fa0c14e4da57220332252002&q=cachoeiro%20de%20itapemirim&days=7&lang=pt";
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
+    console.log(data.forecast);
+
     return data.forecast.forecastday;
   } catch (error) {
     console.log(error);
@@ -13,23 +15,34 @@ async function getForecast() {
 async function showForecast() {
   try {
     const forecast = await getForecast();
-    forecast.forEach((element) => {
-      console.log(element);
-      showCityForecast(element);
+    // console.log(forecast);
+
+    forecast.forEach((element, index) => {
+      // console.log(element.day.condition);
+      showCityForecast(element, index);
     });
   } catch (error) {
     console.log(error);
   }
 }
 
-function showCityForecast(elemento) {
-  let { day } = elemento;
-  console.log(day);
-  const icon = document.querySelector(".main-weather-panel__img-climate");
-  const MaxGraus = document.querySelector(".media-graus__maximum");
+let diasDaSemana = [
+  "Domingo",
+  "Segunda-feira",
+  "Terça-feira",
+  "Quarta-feira",
+  "Quinta-feira",
+  "Sexta-feira",
+  "Sábado",
+];
+function showCityForecast(elemento, index) {
+  let test = new Date(elemento.date_epoch);
+  const nameDate = diasDaSemana[test.getDay()];
+  console.log(nameDate);
 
-  icon.src = day.condition.icon;
-  MaxGraus.innerText = `${Math.floor(day.maxtemp_c)}°`;
+  let { maxtemp_c, avgtemp_c, mintemp_c, condition } = elemento.day;
+  const iconsClimate = document.querySelectorAll(".icon-climate");
+  iconsClimate[index].src = condition.icon;
 }
 
 showForecast();
