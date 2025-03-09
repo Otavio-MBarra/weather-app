@@ -4,7 +4,6 @@ async function getForecast() {
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
-    console.log(data.forecast);
 
     return data.forecast.forecastday;
   } catch (error) {
@@ -27,22 +26,26 @@ async function showForecast() {
 }
 
 let diasDaSemana = [
-  "Domingo",
   "Segunda-feira",
   "Terça-feira",
   "Quarta-feira",
   "Quinta-feira",
   "Sexta-feira",
   "Sábado",
+  "Domingo",
 ];
 function showCityForecast(elemento, index) {
-  let test = new Date(elemento.date_epoch);
+  let test = new Date(elemento.date);
   const nameDate = diasDaSemana[test.getDay()];
-  console.log(nameDate);
+  const nameDay = document.querySelectorAll(".day__day-name");
+  nameDay[index].innerHTML = nameDate;
 
   let { maxtemp_c, avgtemp_c, mintemp_c, condition } = elemento.day;
   const iconsClimate = document.querySelectorAll(".icon-climate");
   iconsClimate[index].src = condition.icon;
+
+  const maxTemp = document.querySelectorAll(".maxtemp");
+  // maxTemp[index].innerHTML = maxtemp_c;
 }
 
 showForecast();

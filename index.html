@@ -36,6 +36,7 @@
           alt="icone da previsão do tempo"
         />
         <div class="main-weather-panel__city">
+          <p class="day__day-name"></p>
           <img src="./src/img/pin-icon.svg" alt="marcardor de localização" />
           <p class="main-weather-panel__city-name">
             Cachoeiro de Itapemirim, ES
@@ -47,8 +48,8 @@
             18 <span>°c</span>
           </h2>
           <div class="main-weather-panel__graus__media-graus">
-            <span class="media-graus__maximum">28°</span
-            ><span class="media-graus__minimum">16°</span>
+            <span class="media-graus__maximum maxtemp">28°</span
+            ><span class="media-graus__minimum mintemp">16°</span>
           </div>
         </div>
 
@@ -98,7 +99,9 @@
               class="day__day-icon-climate icon-climate"
               alt="imagem de nuvem"
             />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
+            <p class="day__day-temperature maxtemp">
+              22°<span class="mintemp"> 16°</span>
+            </p>
           </li>
           <li class="list-days__day">
             <p class="day__day-name">Amanhã</p>
@@ -107,43 +110,9 @@
               class="day__day-icon-climate icon-climate"
               alt="imagem de nuvem"
             />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
-          </li>
-          <li class="list-days__day">
-            <p class="day__day-name">Amanhã</p>
-            <img
-              src="./src/img/clound.svg"
-              class="day__day-icon-climate icon-climate"
-              alt="imagem de nuvem"
-            />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
-          </li>
-          <li class="list-days__day">
-            <p class="day__day-name">Amanhã</p>
-            <img
-              src="./src/img/clound.svg"
-              class="day__day-icon-climate icon-climate"
-              alt="imagem de nuvem"
-            />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
-          </li>
-          <li class="list-days__day">
-            <p class="day__day-name">Amanhã</p>
-            <img
-              src="./src/img/clound.svg"
-              class="day__day-icon-climate icon-climate"
-              alt="imagem de nuvem"
-            />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
-          </li>
-          <li class="list-days__day">
-            <p class="day__day-name">Amanhã</p>
-            <img
-              src="./src/img/clound.svg"
-              class="day__day-icon-climate icon-climate"
-              alt="imagem de nuvem"
-            />
-            <p class="day__day-temperature">22°<span> 16°</span></p>
+            <p class="day__day-temperature maxtemp">
+              22°<span class="mintemp"> 16°</span>
+            </p>
           </li>
         </ul>
       </section>
