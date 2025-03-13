@@ -14,11 +14,10 @@ async function getForecast() {
 async function showForecast() {
   try {
     const forecast = await getForecast();
-    // console.log(forecast);
-
     forecast.forEach((element, index) => {
-      // console.log(element.day.condition);
-      showCityForecast(element, index);
+      showTemperatureCelsius(element, index);
+      showWeekdayName(element, index);
+      showIconsWeather(element, index);
     });
   } catch (error) {
     console.log(error);
@@ -26,26 +25,37 @@ async function showForecast() {
 }
 
 let diasDaSemana = [
-  "Segunda-feira",
-  "Terça-feira",
-  "Quarta-feira",
-  "Quinta-feira",
-  "Sexta-feira",
+  "Segunda",
+  "Terça",
+  "Quarta",
+  "Quinta",
+  "Sexta",
   "Sábado",
   "Domingo",
 ];
-function showCityForecast(elemento, index) {
-  let test = new Date(elemento.date);
-  const nameDate = diasDaSemana[test.getDay()];
-  const nameDay = document.querySelectorAll(".day__day-name");
+const nameDay = document.querySelectorAll(".day__day-name");
+const maxTemp = document.querySelectorAll(".maxtemp");
+const minTemp = document.querySelectorAll(".mintemp");
+const iconsClimate = document.querySelectorAll(".icon-climate");
+const currentTemp = document.querySelector(
+  ".main-weather-panel__graus__currenty-grau"
+);
+
+function showTemperatureCelsius(element, index) {
+  const { maxtemp_c, avgtemp_c, mintemp_c } = element.day;
+  maxTemp[index].innerHTML = `${Math.floor(maxtemp_c)}°`;
+  minTemp[index].innerHTML = `${Math.floor(mintemp_c)}°`;
+  currentTemp.innerHTML = `${Math.floor(avgtemp_c)}<span>°c</span>`;
+}
+
+function showWeekdayName(element, index) {
+  let date = new Date(element.date);
+  const nameDate = diasDaSemana[date.getDay()];
   nameDay[index].innerHTML = nameDate;
-
-  let { maxtemp_c, avgtemp_c, mintemp_c, condition } = elemento.day;
-  const iconsClimate = document.querySelectorAll(".icon-climate");
+}
+function showIconsWeather(element, index) {
+  const { condition } = element.day;
   iconsClimate[index].src = condition.icon;
-
-  const maxTemp = document.querySelectorAll(".maxtemp");
-  // maxTemp[index].innerHTML = maxtemp_c;
 }
 
 showForecast();

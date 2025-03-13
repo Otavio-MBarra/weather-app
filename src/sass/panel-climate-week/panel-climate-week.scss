@@ -27,7 +27,7 @@
 .day__day-temperature {
   color: variables.$white;
 
-  span {
+  .mintemp {
     color: variables.$font-light-lavender;
     margin-left: 5px;
   }
@@ -43,7 +43,7 @@
   }
 
   .day__day-temperature {
-    span {
+    .mintemp {
       color: variables.$font-dark-lavender;
     }
   }
