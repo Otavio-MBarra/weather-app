@@ -17,6 +17,10 @@ const currentTemp = document.querySelector(
 const infoStatisticUnit = document.querySelectorAll(
   ".more-info-statistic__number"
 );
+const defraIndexText = document.querySelector(
+  ".quality-statistic__defra-index"
+);
+const statusQualityText = document.querySelector(".quality-statistic__text");
 
 async function getForecast() {
   const apiUrl =
@@ -43,32 +47,59 @@ async function showForecast() {
       updateWeekdayElements(element, index);
       updateWeatherIcons(element, index);
     });
-    updateInfoDay(data.airQuality);
+    updateAirQuality(data.airQuality);
   } catch (error) {
     console.log(error);
   }
 }
 
-function updateInfoDay(airQuality) {
-  console.log(airQuality);
-
-  const unidades = ["pm2_5", "pm10", "so2", "no2", "o3"];
-  unidades.forEach((unidade, index) => {
-    infoStatisticUnit[index].innerHTML = airQuality[unidade].toFixed(1);
-  });
+function updateAirQuality(airQuality) {
+  updateInfoDay(airQuality);
+  defraIndexText.innerText = airQuality["gb-defra-index"];
+  const statusText = {
+    1: { text: "Boa", class: "status-good" },
+    2: { text: "Moderado", class: "status-moderate" },
+    3: { text: "Ruim para grupos sensíveis", class: "status-sensitive" },
+    4: { text: "Ruim", class: "status-bad" },
+    5: { text: "Prejudicial à saúde", class: "status-harmful" },
+    6: { text: "Perigoso", class: "status-dangerous" },
+  };
+  const { text, class: statusClass } = statusText[
+    airQuality["gb-defra-index"]
+  ] || {
+    text: "Sem dados",
+    class: "status-unknown",
+  };
+  const removeClass = [
+    "status-good",
+    "status-moderate",
+    "status-sensitive",
+    "status-unhealthy",
+    "status-hazardous",
+    "status-unknown",
+  ];
+  statusQualityText.innerText = text;
+  statusQualityText.classList.remove(...removeClass);
+  statusQualityText.classList.add(statusClass);
 }
 
+function updateInfoDay(airQuality) {
+  const unidades = ["pm2_5", "pm10", "so2", "no2", "o3", "co"];
+  unidades.forEach((unidade, index) => {
+    infoStatisticUnit[index].innerText = airQuality[unidade].toFixed(1);
+  });
+}
 function updateTemperatureElements(element, index) {
   const { maxtemp_c, avgtemp_c, mintemp_c } = element.day;
-  maxTemp[index].innerHTML = `${Math.floor(maxtemp_c)}°`;
-  minTemp[index].innerHTML = `${Math.floor(mintemp_c)}°`;
+  maxTemp[index].innerText = `${Math.floor(maxtemp_c)}°`;
+  minTemp[index].innerText = `${Math.floor(mintemp_c)}°`;
   currentTemp.innerHTML = `${Math.floor(avgtemp_c)}<span>°c</span>`;
 }
 
 function updateWeekdayElements(element, index) {
   let date = new Date(element.date);
   const nameDate = weekday[date.getDay()];
-  weekdayElements[index].innerHTML = nameDate;
+  weekdayElements[index].innerText = nameDate;
 }
 function updateWeatherIcons(element, index) {
   const { condition } = element.day;

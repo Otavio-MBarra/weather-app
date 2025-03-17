@@ -32,10 +32,16 @@
 
 .quality-statistic__text {
   @include variables.font-lato(1.8rem, 700);
+}
+.status-good,
+.status-moderate {
   color: variables.$font-light-aquamarine;
 }
+.status-sensitive {
+  color: variables.$text-status-alert;
+}
 
-.quality-statistic__percentage {
+.quality-statistic__defra-index {
   @include variables.font-lato(4rem, 700);
 }
 
@@ -59,7 +65,11 @@
     color: variables.$font-dark-paler-lavender;
   }
   .more-info-statistic__number,
-  .quality-statistic__text {
+  .status-good,
+  .status-moderate {
     color: variables.$font-dark-aquamarine;
+  }
+  .status-sensitive {
+    color: variables.$text-status-alert;
   }
 }
