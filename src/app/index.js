@@ -47,10 +47,34 @@ async function showForecast() {
       updateWeekdayElements(element, index);
       updateWeatherIcons(element, index);
     });
+
     updateAirQuality(data.airQuality);
+
+    updateSunriseSuset(data.forecast[0].astro);
   } catch (error) {
     console.log(error);
   }
+}
+const timeSunreseSunsetText = document.querySelectorAll(".sunrise-time__time");
+
+function updateSunriseSuset(astro) {
+  console.log(astro);
+  const { sunrise, sunset } = astro;
+  timeSunreseSunsetText[0].innerText = convertHours(sunrise);
+  timeSunreseSunsetText[1].innerText = convertHours(sunset);
+}
+
+function convertHours(hours) {
+  const [time, minutes, period] = hours.match(/(\d+):(\d+)(\w+)/).slice(1);
+  let hours24 = parseInt(time, 10);
+  if (period.toLowerCase() === "pm" && hours24 !== 12) {
+    hours24 += 12;
+  }
+  if (period.toLowerCase() === "am" && hours24 === 12) {
+    hours24 = 0;
+  }
+
+  return `${String(hours24).padStart(2, "0")}:${minutes}`;
 }
 
 function updateAirQuality(airQuality) {
