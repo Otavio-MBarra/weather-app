@@ -22,27 +22,72 @@ const defraIndexText = document.querySelector(
 );
 const statusQualityText = document.querySelector(".quality-statistic__text");
 const timeSunreseSunsetText = document.querySelectorAll(".sunrise-time__time");
+const typeInformationsValues = document.querySelectorAll(
+  ".type-information__value"
+);
+const cityName = document.querySelector(".main-weather-panel__city-name");
 
-async function getForecast() {
-  const apiUrl =
-    "https://api.weatherapi.com/v1/forecast.json?key=b72d269fa0c14e4da57220332252002&q=cachoeiro%20de%20itapemirim&days=7&lang=pt&aqi=yes";
+const inputNameCity = document.getElementById("search-name-city");
+const listCity = document.querySelector(".list-city");
+
+inputNameCity.addEventListener("input", async () => {
+  const query = inputNameCity.value.trim();
+  console.log(query);
+  if (query.length < 3) {
+    listCity.innerHTML = "";
+    return;
+  }
+  try {
+    const response = await fetch(
+      `https://api.weatherapi.com/v1/search.json?key=b72d269fa0c14e4da57220332252002&q=${query}`
+    );
+
+    const data = await response.json();
+    listCity.innerHTML = "";
+
+    data.forEach((city) => {
+      console.log(city);
+
+      const item = document.createElement("li");
+      item.textContent = `${city.name}, ${city.country}`;
+      item.addEventListener("click", () => {
+        inputNameCity.value = city.name;
+        listCity.innerHTML = "";
+        showForecast(city.lat, city.lon);
+      });
+
+      listCity.appendChild(item);
+    });
+  } catch (error) {}
+});
+
+showForecast();
+
+async function getForecast(latitude, longitude) {
+  const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=b72d269fa0c14e4da57220332252002&q=${latitude},${longitude}&days=7&lang=pt&aqi=yes`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
-    console.log();
 
     return {
       forecast: data.forecast.forecastday,
       airQuality: data.current.air_quality,
+      location: data.location,
     };
   } catch (error) {
     console.log(error);
   }
 }
 
-async function showForecast() {
+async function showForecast(latitude, longitude) {
   try {
-    const data = await getForecast();
+    if (!latitude || !longitude) {
+      const coords = await getLocalization();
+      latitude = coords.latitude;
+      longitude = coords.longitude;
+    }
+
+    const data = await getForecast(latitude, longitude);
     data.forecast.forEach((element, index) => {
       updateTemperatureElements(element, index);
       updateWeekdayElements(element, index);
@@ -51,17 +96,17 @@ async function showForecast() {
     weatherInformationDay(data.forecast[0].day);
     updateAirQuality(data.airQuality);
     updateSunriseSunset(data.forecast[0].astro);
+    switchCityName(data.location);
   } catch (error) {
     console.log(error);
   }
 }
 
-const typeInformationsValues = document.querySelectorAll(
-  ".type-information__value"
-);
+function switchCityName(location) {
+  cityName.innerText = location.name;
+}
 
 function weatherInformationDay(day) {
-  console.log(day);
   const { avgvis_km, avghumidity, daily_chance_of_rain } = day;
   typeInformationsValues[0].innerText = avgvis_km;
   typeInformationsValues[1].innerText = avghumidity;
@@ -135,4 +180,15 @@ function updateWeatherIcons(element, index) {
   const { condition } = element.day;
   weatherIcons[index].src = condition.icon;
 }
-showForecast();
+
+function getLocalization() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      resolve({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      }),
+        (error) => reject(error);
+    });
+  });
+}
