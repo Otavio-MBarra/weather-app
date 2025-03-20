@@ -96,7 +96,11 @@
   width: 45px;
   opacity: 0.4;
 }
-
+.warpper-unity {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .type-information__type {
   @include variables.font-lato(1.3rem);
   margin-bottom: 5px;
@@ -104,10 +108,9 @@
 
 .type-information__value {
   @include variables.font-lato(1.8rem, 700);
-  span {
-    font-size: 1.4rem;
-    color: variables.$font-lavender-mist;
-  }
+}
+.type-information__value + span {
+  font-size: 1.4rem;
 }
 @media screen and (min-width: 530px) {
   .main-weather-panel__img-climate {

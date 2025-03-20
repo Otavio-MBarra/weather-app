@@ -21,6 +21,7 @@ const defraIndexText = document.querySelector(
   ".quality-statistic__defra-index"
 );
 const statusQualityText = document.querySelector(".quality-statistic__text");
+const timeSunreseSunsetText = document.querySelectorAll(".sunrise-time__time");
 
 async function getForecast() {
   const apiUrl =
@@ -47,23 +48,31 @@ async function showForecast() {
       updateWeekdayElements(element, index);
       updateWeatherIcons(element, index);
     });
-
+    weatherInformationDay(data.forecast[0].day);
     updateAirQuality(data.airQuality);
-
-    updateSunriseSuset(data.forecast[0].astro);
+    updateSunriseSunset(data.forecast[0].astro);
   } catch (error) {
     console.log(error);
   }
 }
-const timeSunreseSunsetText = document.querySelectorAll(".sunrise-time__time");
 
-function updateSunriseSuset(astro) {
-  console.log(astro);
+const typeInformationsValues = document.querySelectorAll(
+  ".type-information__value"
+);
+
+function weatherInformationDay(day) {
+  console.log(day);
+  const { avgvis_km, avghumidity, daily_chance_of_rain } = day;
+  typeInformationsValues[0].innerText = avgvis_km;
+  typeInformationsValues[1].innerText = avghumidity;
+  typeInformationsValues[2].innerText = daily_chance_of_rain;
+}
+
+function updateSunriseSunset(astro) {
   const { sunrise, sunset } = astro;
   timeSunreseSunsetText[0].innerText = convertHours(sunrise);
   timeSunreseSunsetText[1].innerText = convertHours(sunset);
 }
-
 function convertHours(hours) {
   const [time, minutes, period] = hours.match(/(\d+):(\d+)(\w+)/).slice(1);
   let hours24 = parseInt(time, 10);
@@ -76,7 +85,6 @@ function convertHours(hours) {
 
   return `${String(hours24).padStart(2, "0")}:${minutes}`;
 }
-
 function updateAirQuality(airQuality) {
   updateInfoDay(airQuality);
   defraIndexText.innerText = airQuality["gb-defra-index"];
@@ -106,7 +114,6 @@ function updateAirQuality(airQuality) {
   statusQualityText.classList.remove(...removeClass);
   statusQualityText.classList.add(statusClass);
 }
-
 function updateInfoDay(airQuality) {
   const unidades = ["pm2_5", "pm10", "so2", "no2", "o3", "co"];
   unidades.forEach((unidade, index) => {
@@ -119,7 +126,6 @@ function updateTemperatureElements(element, index) {
   minTemp[index].innerText = `${Math.floor(mintemp_c)}°`;
   currentTemp.innerHTML = `${Math.floor(avgtemp_c)}<span>°c</span>`;
 }
-
 function updateWeekdayElements(element, index) {
   let date = new Date(element.date);
   const nameDate = weekday[date.getDay()];
@@ -129,5 +135,4 @@ function updateWeatherIcons(element, index) {
   const { condition } = element.day;
   weatherIcons[index].src = condition.icon;
 }
-
 showForecast();
