@@ -24,6 +24,7 @@ main {
     "air-quality "
     "sunrise-panel";
 }
+
 @media screen and (min-width: 720px) {
   main {
     grid-template-columns: 1fr 1fr;
@@ -66,7 +67,11 @@ main {
   justify-content: center;
   @include variables.font-lato(1.6rem, 700);
 }
-
+.sunrise-time__sunrise-wrapper {
+  img {
+    width: 60px;
+  }
+}
 .sunrise-time__sunrise-wrapper:nth-child(1) {
   margin: 15px 0;
 }

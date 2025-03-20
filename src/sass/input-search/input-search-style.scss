@@ -1,12 +1,35 @@
 @use "../variables.scss";
-
-.wrapper-input-search {
+.container-wrapper {
   grid-area: search;
+  position: relative;
+}
+.background-glass {
+  background: rgba(194, 191, 244, 0.24);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.5px);
+  -webkit-backdrop-filter: blur(4.5px);
+  border: 1px solid rgba(194, 191, 244, 0.37);
+}
+.list-city {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  top: 4rem;
+  padding: 15px;
+  border-radius: 10px;
+  display: block;
+  @include variables.font-lato(1.5rem, 700);
+  li {
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+}
+.wrapper-input-search {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
 }
 .wrapper-input-search__search-input {

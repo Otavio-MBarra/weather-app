@@ -40,6 +40,11 @@
 .status-sensitive {
   color: variables.$text-status-alert;
 }
+.status-harmful,
+.status-dangerous,
+.status-bad {
+  color: variables.$text-status-error;
+}
 
 .quality-statistic__defra-index {
   @include variables.font-lato(4rem, 700);
@@ -70,6 +75,11 @@
     color: variables.$font-dark-aquamarine;
   }
   .status-sensitive {
-    color: variables.$text-status-alert;
+    color: variables.$text-status-alert-dark;
+  }
+  .status-harmful,
+  .status-dangerous,
+  .status-bad {
+    color: variables.$text-status-error-dark;
   }
 }

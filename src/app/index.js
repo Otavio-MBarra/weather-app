@@ -35,6 +35,7 @@ inputNameCity.addEventListener("input", async () => {
   console.log(query);
   if (query.length < 3) {
     listCity.innerHTML = "";
+    listCity.classList.remove("background-glass");
     return;
   }
   try {
@@ -47,12 +48,13 @@ inputNameCity.addEventListener("input", async () => {
 
     data.forEach((city) => {
       console.log(city);
-
+      listCity.classList.add("background-glass");
       const item = document.createElement("li");
       item.textContent = `${city.name}, ${city.country}`;
       item.addEventListener("click", () => {
         inputNameCity.value = city.name;
         listCity.innerHTML = "";
+        listCity.classList.remove("background-glass");
         showForecast(city.lat, city.lon);
       });
 
@@ -119,7 +121,8 @@ function updateSunriseSunset(astro) {
   timeSunreseSunsetText[1].innerText = convertHours(sunset);
 }
 function convertHours(hours) {
-  const [time, minutes, period] = hours.match(/(\d+):(\d+)(\w+)/).slice(1);
+  const match = hours.match(/(\d{1,2}):(\d{2})\s*([APap][Mm])/);
+  const [, time, minutes, period] = match;
   let hours24 = parseInt(time, 10);
   if (period.toLowerCase() === "pm" && hours24 !== 12) {
     hours24 += 12;
