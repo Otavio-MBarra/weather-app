@@ -63,8 +63,6 @@ inputNameCity.addEventListener("input", async () => {
   } catch (error) {}
 });
 
-showForecast();
-
 async function getForecast(latitude, longitude) {
   const apiUrl = `https://api.weatherapi.com/v1/forecast.json?key=b72d269fa0c14e4da57220332252002&q=${latitude},${longitude}&days=7&lang=pt&aqi=yes`;
   try {
@@ -195,3 +193,7 @@ function getLocalization() {
     });
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  showForecast();
+});

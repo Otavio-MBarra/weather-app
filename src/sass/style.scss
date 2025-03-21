@@ -4,10 +4,14 @@
 @use "./input-search/input-search-style.scss";
 @use "./panel-climate-week/panel-climate-week.scss";
 @use "./air-quality-panel/air-qualy-panel.scss";
+@use "./panel-sunserie/panel-sunserise.scss";
 body {
   background: variables.$background-card no-repeat
     url("../img/main-background.png") center/cover;
   backdrop-filter: blur(15px);
+  display: grid;
+  align-items: center;
+  height: 100%;
 }
 
 main {
@@ -23,6 +27,7 @@ main {
     "weather-info "
     "air-quality "
     "sunrise-panel";
+  width: 100%;
 }
 
 @media screen and (min-width: 720px) {
@@ -45,44 +50,5 @@ main {
       "search search search"
       "main-panel air-quality sunrise-panel"
       "main-panel weather-info weather-info";
-  }
-}
-
-.more-weather-information__sunrise-panel {
-  grid-area: sunrise-panel;
-  background-color: variables.$background-panel;
-  border-radius: 10px;
-  padding: 25px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: variables.$font-paler-lavander;
-  text-align: center;
-}
-.sunrise-panel__text-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  @include variables.font-lato(1.6rem, 700);
-}
-.sunrise-time__sunrise-wrapper {
-  img {
-    width: 60px;
-  }
-}
-.sunrise-time__sunrise-wrapper:nth-child(1) {
-  margin: 15px 0;
-}
-
-.sunrise-time__texte {
-  @include variables.font-lato(1.4rem, 700);
-}
-
-@media (prefers-color-scheme: dark) {
-  .more-weather-information__sunrise-panel {
-    background-color: variables.$background-panel-dark;
-    color: variables.$font-dark-paler-lavender;
   }
 }
